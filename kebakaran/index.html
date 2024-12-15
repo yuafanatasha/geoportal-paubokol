@@ -82,11 +82,11 @@
             <div id="map-title">Peta Rawan Bencana Kebakaran Hutan</div>
 
             <!-- Map -->
-            <div id="map"></div>
-
-            <div id="popup" class="ol-popup">
-                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-                <div id="popup-content"></div>
+            <div id="map">
+                <div id="popup" class="ol-popup">
+                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                    <div id="popup-content"></div>
+                </div>
             </div>
         </div>
 
@@ -98,46 +98,10 @@
         <script src="./resources/ol.js"></script>
         <script src="./resources/ol-layerswitcher.js"></script>
         <script src="resources/ol-geocoder.js"></script>
-        <script src="layers/RawanBencanaKebakaranHutan_2.js"></script>
-        <script src="styles/RawanBencanaKebakaranHutan_2_style.js"></script>
+        <script src="layers/_2.js"></script>
+        <script src="styles/_2_style.js"></script>
         <script src="./layers/layers.js" type="text/javascript"></script> 
         <script src="./resources/Autolinker.min.js"></script>
         <script src="./resources/qgis2web.js"></script>
-
-        <script>
-            // Inisialisasi peta
-            var map = new ol.Map({
-                target: 'map',
-                layers: [
-                    new ol.layer.Tile({
-                        source: new ol.source.OSM(),
-                    }),
-                    new ol.layer.Vector({
-                        source: new ol.source.Vector({
-                            url: 'layers/RawanBencanaKebakaranHutan_2.js',
-                            format: new ol.format.GeoJSON()
-                        }),
-                        style: styles.RawanBencanaKebakaranHutan_2_style
-                    }),
-                    // Tambahkan layer-layer lainnya sesuai kebutuhan
-                ],
-                view: new ol.View({
-                    center: ol.proj.fromLonLat([longitude, latitude]), // Ganti dengan koordinat awal peta
-                    zoom: 12
-                })
-            });
-
-            // Menambahkan kontrol layer switcher
-            var layerSwitcher = new ol.control.LayerSwitcher();
-            map.addControl(layerSwitcher);
-
-            // Update koordinat saat mouse bergerak
-            map.on('pointermove', function(event) {
-                var coord = ol.proj.toLonLat(event.coordinate);
-                var lon = coord[0].toFixed(6);
-                var lat = coord[1].toFixed(6);
-                document.getElementById('coordinates').innerHTML = 'Koordinat: ' + lat + ', ' + lon;
-            });
-        </script>
     </body>
 </html>
